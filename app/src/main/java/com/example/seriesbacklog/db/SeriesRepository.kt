@@ -13,8 +13,12 @@ class SeriesRepository(context: Context) {
         seriesDao = reminderRoomDatabase!!.seriesDao()
     }
 
-    fun getAllSeries(): LiveData<Series?> {
+    fun getAllSeries(): LiveData<List<Series>> {
         return seriesDao.getSeries()
+    }
+
+    fun insertSeries(series: Series) {
+        seriesDao.insertReminder(series)
     }
 
 

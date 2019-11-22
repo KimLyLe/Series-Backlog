@@ -6,23 +6,26 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.content_add.*
 import com.example.seriesbacklog.R
 import com.example.seriesbacklog.model.Series
 import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.content_add.*
 
-const val EXTRA_SERIES = "EXTRA_SERIES"
-
 class AddActivity : AppCompatActivity() {
-
-    private lateinit var editViewModel: EditViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
         setSupportActionBar(toolbar)
         supportActionBar?.title = "Add Series"
-        fab.setOnClickListener { onSaveClick() }
+
+        initViews()
+    }
+
+    private fun initViews() {
+        fab.setOnClickListener { onSaveClick()
+        }
     }
 
     private fun onSaveClick() {
@@ -54,6 +57,6 @@ class AddActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val EXTRA_NOTE = "EXTRA_NOTE"
+        const val EXTRA_SERIES = "EXTRA_SERIES"
     }
 }

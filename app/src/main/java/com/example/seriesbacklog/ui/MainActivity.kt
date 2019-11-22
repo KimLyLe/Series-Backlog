@@ -1,5 +1,6 @@
 package com.example.seriesbacklog.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -19,6 +20,7 @@ import com.example.seriesbacklog.model.SeriesAdapter
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.series_item.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,26 +42,29 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        rvSeries.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        rvSeries.layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
         rvSeries.adapter = seriesAdapter
-        rvSeries.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        rvSeries.addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
+        seriesAdapter.notifyDataSetChanged()
 
-        fab.setOnClickListener { val intent = Intent(this, AddActivity::class.java)
-            intent.putExtra(AddActivity.EXTRA_NOTE, mainActivityViewModel.series.value)
+        fab.setOnClickListener {
+            val intent = Intent(this, AddActivity::class.java)
             startActivity(intent)
         }
-        seriesAdapter.notifyDataSetChanged()
     }
 
     private fun initViewModel() {
         mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
 
         mainActivityViewModel.series.observe(this, Observer { series ->
-            if (series != null) {
+            this@MainActivity.seriesList.clear()
+            this@MainActivity.seriesList.addAll(series)
+            seriesAdapter.notifyDataSetChanged()
 
-            }
         })
-    }
+}
+
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)

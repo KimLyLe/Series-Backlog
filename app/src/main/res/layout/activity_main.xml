@@ -21,10 +21,14 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include
-        layout="@layout/content_main"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSeries"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="281dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"

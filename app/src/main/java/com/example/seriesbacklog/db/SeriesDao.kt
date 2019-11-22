@@ -9,8 +9,11 @@ interface SeriesDao {
     @Insert
     suspend fun insertSeries(series: Series)
 
-    @Query("SELECT * FROM seriesTable")
-    fun getSeries(): LiveData<Series?>
+    @Query("SELECT * FROM seriesTable LIMIT 1")
+    fun getSeries(): LiveData<List<Series>>
+
+    @Insert
+    fun insertReminder(series: Series)
 
     @Delete
     fun deleteSeries(series: Series)
