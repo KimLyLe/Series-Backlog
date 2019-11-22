@@ -9,70 +9,77 @@
     tools:showIn="@layout/activity_add">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_margin="10dp"
         android:id="@+id/seriesCardView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:minHeight="200dp">
+        android:layout_width="wrap_content"
+        android:layout_height="176dp"
+        android:layout_margin="10dp"
+        android:layout_marginTop="16dp"
+        android:minHeight="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="172dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/seriesTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/seriesTitle"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></EditText>
-
-            <EditText
                 android:id="@+id/seriesPlatform"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="357dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="12dp"
                 android:hint="@string/seriesPlatform"
                 android:inputType="text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/seriesTitle"></EditText>
 
             <EditText
-                android:id="@+id/seriesDay"
-                android:layout_width="103dp"
-                android:layout_height="48dp"
-                android:layout_marginBottom="28dp"
-                android:autofillHints="@string/seriesDay"
-                android:hint="@string/seriesDay"
+                android:id="@+id/seriesYear"
+                android:layout_width="121dp"
+                android:layout_height="46dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:hint="@string/seriesYear"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"></EditText>
+                app:layout_constraintEnd_toEndOf="parent"></EditText>
 
             <EditText
                 android:id="@+id/seriesMonth"
                 android:layout_width="103dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginBottom="28dp"
-                android:autofillHints="@string/seriesMonth"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="12dp"
                 android:hint="@string/seriesMonth"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/seriesDay"></EditText>
 
             <EditText
-                android:id="@+id/seriesYear"
-                android:layout_width="146dp"
+                android:id="@+id/seriesDay"
+                android:layout_width="103dp"
                 android:layout_height="48dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="28dp"
-                android:autofillHints="@string/seriesYear"
-                android:hint="@string/seriesYear"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="12dp"
+                android:hint="@string/seriesDay"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"></EditText>
+                app:layout_constraintStart_toStartOf="parent"></EditText>
+
+            <EditText
+                android:id="@+id/seriesTitle"
+                android:hint="@string/seriesTitle"
+                android:layout_width="354dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="16dp"
+                android:inputType="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.145"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></EditText>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
