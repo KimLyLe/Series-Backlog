@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import com.example.seriesbacklog.model.Series
 
-public class SeriesRepository(context: Context) {
+class SeriesRepository(context: Context) {
 
-    private var seriesDao: SeriesDao
+    private val seriesDao: SeriesDao
 
     init {
         val reminderRoomDatabase = SeriesRoomDatabase.getDatabase(context)
@@ -17,9 +17,6 @@ public class SeriesRepository(context: Context) {
         return seriesDao.getSeries()
     }
 
-    suspend fun insertSeries(series: Series) {
-        seriesDao.insertSeries(series)
-    }
 
     fun deleteSeries(series: Series) {
         seriesDao.deleteSeries(series)

@@ -6,8 +6,8 @@ import com.example.seriesbacklog.db.SeriesRepository
 
 class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val noteRepository = SeriesRepository(application.applicationContext)
+    private val seriesRepository = SeriesRepository(application.applicationContext)
 
-    val note = noteRepository.getAllSeries()
+    val series = seriesRepository.getAllSeries()
 
 }

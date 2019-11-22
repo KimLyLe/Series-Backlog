@@ -2,4 +2,9 @@
     <string name="app_name">SeriesBacklog</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_add">AddActivity</string>
+    <string name="seriesDay">Day</string>
+    <string name="seriesMonth">Month</string>
+    <string name="seriesYear">Year</string>
+    <string name="seriesPlatform">Platform</string>
+    <string name="seriesTitle">Title</string>
 </resources>
