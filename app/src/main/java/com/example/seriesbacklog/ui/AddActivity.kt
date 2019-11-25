@@ -11,6 +11,9 @@ import com.example.seriesbacklog.R
 import com.example.seriesbacklog.model.Series
 import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.content_add.*
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.*
 
 class AddActivity : AppCompatActivity() {
 
@@ -35,7 +38,9 @@ class AddActivity : AppCompatActivity() {
             seriesMonth.text.toString().isNotBlank() &&
             seriesYear.text.toString().isNotBlank()) {
 
-            val series = Series(seriesTitle.text.toString(), seriesPlatform.text.toString(), seriesDay.text.toString(), seriesMonth.text.toString(), seriesYear.text.toString() )
+            val date = 	LocalDateTime.of(seriesYear.text.toString().toInt(), seriesMonth.text.toString().toInt(), seriesDay.text.toString().toInt(), 0,0,0)
+
+            val series = Series(seriesTitle.text.toString(), seriesPlatform.text.toString(), date )
             val resultIntent = Intent()
             resultIntent.putExtra(EXTRA_SERIES, series)
             setResult(Activity.RESULT_OK, resultIntent)

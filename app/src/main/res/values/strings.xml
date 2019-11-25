@@ -7,4 +7,5 @@
     <string name="seriesYear">Year</string>
     <string name="seriesPlatform">Platform</string>
     <string name="seriesTitle">Title</string>
+    <string name="tvDate">Release: %s</string>
 </resources>

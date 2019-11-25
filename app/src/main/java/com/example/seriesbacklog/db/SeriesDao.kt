@@ -9,7 +9,7 @@ interface SeriesDao {
     @Insert
     suspend fun insertSeries(series: Series)
 
-    @Query("SELECT * FROM seriesTable")
+    @Query("SELECT * FROM seriesTable ORDER BY date ")
     fun getSeries(): LiveData<List<Series>>
 
     @Insert

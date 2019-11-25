@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 @Parcelize
@@ -17,14 +19,8 @@ data class Series(
     @ColumnInfo(name = "platform")
     var platform: String,
 
-    @ColumnInfo(name = "day")
-    var day: String,
-
-    @ColumnInfo(name = "month")
-    var month: String,
-
-    @ColumnInfo(name = "year")
-    var year: String,
+    @ColumnInfo(name = "date")
+    var date: LocalDateTime,
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")

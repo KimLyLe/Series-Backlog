@@ -5,16 +5,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.series_item.view.*
 import android.R.attr.data
+import android.content.Context
+import android.provider.Settings.Global.getString
+import androidx.core.content.ContextCompat
 import com.example.seriesbacklog.R
 
 
 class SeriesAdapter (private val series: List<Series>) :
     RecyclerView.Adapter<SeriesAdapter.ViewHolder>() {
 
+    lateinit var context: Context
+
     /**
      * Creates and returns a ViewHolder object, inflating a standard layout called simple_list_item_1.
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        context = parent.context
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.series_item, parent, false)
         )
@@ -39,7 +45,7 @@ class SeriesAdapter (private val series: List<Series>) :
         fun bind(series: Series) {
             itemView.tvTitle.text = series.title
             itemView.tvPlatform.text = series.platform
-            itemView.tvDate.text = series.day
+            itemView.tvDate.text = String.format(context.getString(R.string.tvDate), series.date.toString())
         }
     }
 }
