@@ -21,12 +21,4 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
             seriesRepository.insertSeries(series)
         }
     }
-
-    fun deleteReminder(series: Series) {
-        ioScope.launch {
-            seriesRepository.deleteSeries(series)
-        }
-    }
-
-
 }

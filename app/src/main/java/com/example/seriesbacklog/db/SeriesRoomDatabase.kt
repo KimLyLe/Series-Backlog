@@ -33,17 +33,6 @@ abstract class SeriesRoomDatabase : RoomDatabase() {
                             context.applicationContext,
                             SeriesRoomDatabase::class.java, DATABASE_NAME
                         )
-                            .fallbackToDestructiveMigration()
-                            .addCallback(object : RoomDatabase.Callback() {
-                                override fun onCreate(db: SupportSQLiteDatabase) {
-                                    super.onCreate(db)
-                                    INSTANCE?.let { database ->
-                                        CoroutineScope(Dispatchers.IO).launch {
-                                            database.seriesDao().insertSeries(Series("Title", "Platform", "Day", "Month", "Year"))
-                                        }
-                                    }
-                                }
-                            })
                             .build()
                     }
                 }

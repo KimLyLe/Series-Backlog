@@ -1,5 +1,6 @@
 package com.example.seriesbacklog.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private val seriesList = arrayListOf<Series>()
     private val seriesAdapter = SeriesAdapter(seriesList)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,12 +46,27 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         rvSeries.layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
         rvSeries.adapter = seriesAdapter
-        rvSeries.addItemDecoration(DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL))
-        seriesAdapter.notifyDataSetChanged()
 
         fab.setOnClickListener {
             val intent = Intent(this, AddActivity::class.java)
-            startActivity(intent)
+            startActivityForResult(
+                intent,
+                ADD_SERIES_REQUEST_CODE
+            )
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                ADD_SERIES_REQUEST_CODE -> {
+                    val series = data!!.getParcelableExtra<Series>(AddActivity.EXTRA_SERIES)
+
+                    mainActivityViewModel.insertSeries(series)
+                }
+            }
         }
     }
 
@@ -79,6 +96,9 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+    companion object {
+        const val ADD_SERIES_REQUEST_CODE = 100
     }
 }
 
