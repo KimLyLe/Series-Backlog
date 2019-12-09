@@ -21,4 +21,10 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
             seriesRepository.insertSeries(series)
         }
     }
+
+    fun deleteAllSeries() {
+        ioScope.launch {
+            seriesRepository.deleteAllSeries()
+        }
+    }
 }

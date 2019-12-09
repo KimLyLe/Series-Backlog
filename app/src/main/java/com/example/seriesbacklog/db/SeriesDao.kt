@@ -15,8 +15,8 @@ interface SeriesDao {
     @Insert
     fun insertReminder(series: Series)
 
-    @Delete
-    fun deleteSeries(series: Series)
+    @Query("DELETE FROM seriesTable")
+    fun deleteAllSeries()
 
     @Update
     suspend fun updateSeries(series: Series)

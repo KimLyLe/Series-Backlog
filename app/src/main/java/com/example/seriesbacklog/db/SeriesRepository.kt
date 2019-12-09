@@ -22,12 +22,7 @@ class SeriesRepository(context: Context) {
     }
 
 
-    fun deleteSeries(series: Series) {
-        seriesDao.deleteSeries(series)
+    fun deleteAllSeries() {
+        seriesDao.deleteAllSeries()
     }
-
-    suspend fun updateSeries(series: Series) {
-        seriesDao.updateSeries(series)
-    }
-
 }
