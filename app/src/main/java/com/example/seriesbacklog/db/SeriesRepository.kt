@@ -21,6 +21,9 @@ class SeriesRepository(context: Context) {
         seriesDao.insertReminder(series)
     }
 
+    fun deleteSeries(series: Series) {
+        seriesDao.deleteSeries(series)
+    }
 
     fun deleteAllSeries() {
         seriesDao.deleteAllSeries()

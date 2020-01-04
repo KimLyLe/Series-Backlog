@@ -18,6 +18,9 @@ interface SeriesDao {
     @Query("DELETE FROM seriesTable")
     fun deleteAllSeries()
 
+    @Delete
+    fun deleteSeries(series: Series)
+
     @Update
     suspend fun updateSeries(series: Series)
 }

@@ -22,6 +22,12 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         }
     }
 
+    fun deleteGame(series: Series) {
+        ioScope.launch {
+            seriesRepository.deleteSeries(series)
+        }
+    }
+
     fun deleteAllSeries() {
         ioScope.launch {
             seriesRepository.deleteAllSeries()

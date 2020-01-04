@@ -30,8 +30,10 @@ import kotlinx.coroutines.withContext
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainActivityViewModel: MainActivityViewModel
+    private lateinit var seriesRepository: SeriesRepository
     private val seriesList = arrayListOf<Series>()
     private val seriesAdapter = SeriesAdapter(seriesList)
+    private val mainScope = CoroutineScope(Dispatchers.Main)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         rvSeries.layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
         rvSeries.adapter = seriesAdapter
-
+        createItemTouchHelper().attachToRecyclerView(rvSeries)
         fab.setOnClickListener {
             val intent = Intent(this, AddActivity::class.java)
             startActivityForResult(
@@ -91,6 +93,33 @@ class MainActivity : AppCompatActivity() {
         mainActivityViewModel.deleteAllSeries()
     }
 
+    /**
+     * Create a touch helper to recognize when a user swipes an item from a recycler view.
+     * An ItemTouchHelper enables touch behavior (like swipe and move) on each ViewHolder,
+     * and uses callbacks to signal when a user is performing these actions.
+     */
+    private fun createItemTouchHelper(): ItemTouchHelper {
+        val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            // Callback triggered when a user swiped an item.
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val seriesToDelete = seriesList[position]
+                mainActivityViewModel.deleteGame(seriesToDelete)
+                Snackbar.make(rvSeries, "Deleted series", Snackbar.LENGTH_SHORT).show()
+
+
+            }
+        }
+        return ItemTouchHelper(callback)
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here. The action bar will
